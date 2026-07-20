@@ -15,9 +15,10 @@ var assets embed.FS
 
 func main() {
 	// Create an instance of the app structure
-	repo := repository.NewMemoryUserRepo()
-	svc := service.NewUserService(repo)
-	app := NewApp(svc)
+	userRepo := repository.NewMemoryUserRepo()
+	userSvc := service.NewUserService(userRepo)
+	calcSvc := service.NewCalculatorService()
+	app := NewApp(userSvc, calcSvc)
 
 	// Create application with options
 	err := wails.Run(&options.App{

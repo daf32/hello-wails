@@ -15,8 +15,14 @@ type App struct {
 }
 
 // NewApp creates a new App application struct
-func NewApp(userSvc *service.UserService) *App {
-	return &App{userSvc: userSvc}
+func NewApp(
+	userSvc *service.UserService,
+	calcSvc *service.CalculatorService,
+) *App {
+	return &App{
+		userSvc: userSvc,
+		calcSvc: calcSvc,
+	}
 }
 
 // startup is called when the app starts. The context is saved
@@ -37,6 +43,6 @@ func (a *App) ListUsers(limit int) ([]domain.User, error) {
 	return a.userSvc.ListUsers(a.ctx, limit)
 }
 
-func (app *App) Divide(a, b float64) (float64, error) {
-	return app.calcSvc.Divide(a, b)
+func (a *App) Divide(dividend, divisor float64) (float64, error) {
+	return a.calcSvc.Divide(dividend, divisor)
 }

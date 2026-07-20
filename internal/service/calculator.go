@@ -13,7 +13,7 @@ func NewCalculatorService() *CalculatorService {
 
 func (c *CalculatorService) Divide(a, b float64) (float64, error) {
 	if b == 0 {
-		return 0, fmt.Errorf("invalid b: %w", domain.ErrDivisionByZero)
+		return 0, fmt.Errorf("invalid divisor: %w", domain.ErrDivisionByZero)
 	}
 
 	return a / b, nil
